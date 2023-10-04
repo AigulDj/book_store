@@ -78,10 +78,10 @@ Define the attributes of your Model class. You can usually map the table columns
 # (in lib/book.py)
 
 class Book:
-    def __init__(self):
-        self.id = 0
-        self.title = ""
-        self.author_name = ""
+    def __init__(self, id, title, author_name):
+        self.id = id 
+        self.title = title
+        self.author_name = author_name
 
 
 
@@ -122,9 +122,6 @@ class BookRepository():
 
         # Returns an array of Book objects.
 
-        # Gets a single record by its ID
-        # One argument: the id (number)
-
 
 6. Write Test Examples
 """
@@ -132,26 +129,29 @@ Write Python code that defines the expected behaviour of the Repository class, f
 These examples will later be encoded as Pytest tests.
 """
 
-# 1
-# Get all students
+# Book class
 
+# Get book properties 
+book = Book(1, "Test Title", "Test Author Name")
+book.id # => 1
+book.title # => "Test Title"
+book.author_name # => "Test Author Name"
+
+
+# BookRepository class
+
+# Get all books 
 repo = BookRepository()
-
 books = repo.all()
 
-len(books) # =>  2
+books => [
+    Book(1, 'Nineteen Eighty-Four', 'George Orwell'),
+    Book(2, 'Mrs Dalloway', 'Virginia Woolf'),
+    Book(3, 'Emma', 'Jane Austen'),
+    Book(4, 'Dracula', 'Bram Stoker'),
+    Book(5, 'The Age of Innocence', 'Edith Wharton'),
+]
 
-books[0].id # =>  1
-books[0].title # =>  'Book Title 1'
-books[0].author_name # =>  'Author Name 1'
-
-books[0].id # =>  2
-books[0].title # =>  'Book Title 2'
-books[0].author_name # =>  'Author Name 2'
-
-"""
-Encode this example as a test.
-"""
 
 7. Test-drive and implement the Repository class behaviour
 After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour.
